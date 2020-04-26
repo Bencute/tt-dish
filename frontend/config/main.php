@@ -45,5 +45,11 @@ return [
         ],
         */
     ],
+    'modules' => [
+        'dish' => [
+            'class' => 'modules\dish\Module',
+            'controllerNamespace' => 'dish\controllers\frontend',
+        ],
+    ],
     'params' => $params,
 ];
