@@ -1,6 +1,6 @@
 <?php
 
-namespace modules\dish;
+namespace dish;
 
 /**
  * dish module definition class

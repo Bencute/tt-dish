@@ -47,7 +47,7 @@ return [
     ],
     'modules' => [
         'dish' => [
-            'class' => 'modules\dish\Module',
+            'class' => 'dish\Module',
             'controllerNamespace' => 'dish\controllers\frontend',
         ],
     ],
