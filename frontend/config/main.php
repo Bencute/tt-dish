@@ -11,7 +11,6 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-    'aliases' => ['@dish' => dirname(dirname(__DIR__)) . '/modules/dish'],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
