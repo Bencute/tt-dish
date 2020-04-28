@@ -5,6 +5,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model dish\model\ar\Dish */
+/* @var $strIngredients string */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Dishes', 'url' => ['index']];
@@ -31,6 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
+            [
+                'label' => 'Ingredients',
+                'value' => $strIngredients,
+            ],
         ],
     ]) ?>
 

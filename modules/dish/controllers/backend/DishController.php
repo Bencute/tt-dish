@@ -61,8 +61,22 @@ class DishController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $ingredients = $model->ingredients;
+        $strIngredients = implode(
+            ', ',
+            array_map(
+                function($item){
+                    return $item->name;
+                },
+                $ingredients
+            )
+        );
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'strIngredients' => $strIngredients
         ]);
     }
 
@@ -79,8 +93,12 @@ class DishController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $ingredients = $this->module->getIngredients();
+
         return $this->render('create', [
             'model' => $model,
+            'ingredients' => $ingredients,
+            'saveIngredients' => $model->getSaveIngredients(),
         ]);
     }
 
@@ -99,8 +117,14 @@ class DishController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $saveIngredients = Yii::$app->request->getIsGet() ? $model->ingredients : $model->getSaveIngredients();
+
+        $ingredients = $this->module->getIngredients();
+
         return $this->render('update', [
             'model' => $model,
+            'ingredients' => $ingredients,
+            'saveIngredients' => $saveIngredients,
         ]);
     }
 

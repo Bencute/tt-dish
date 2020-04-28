@@ -1,9 +1,12 @@
 <?php
 
 use yii\helpers\Html;
+use dish\model\ar\Ingredient;
 
 /* @var $this yii\web\View */
 /* @var $model dish\model\ar\Dish */
+/* @var $ingredients Ingredient[] */
+/* @var $saveIngredients Ingredient[]|null */
 
 $this->title = 'Update Dish: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Dishes', 'url' => ['index']];
@@ -16,6 +19,8 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'ingredients' => $ingredients,
+        'saveIngredients' => $saveIngredients,
     ]) ?>
 
 </div>
