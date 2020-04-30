@@ -24,6 +24,8 @@ class Dish extends ActiveRecord
      */
     const NAME_FORMFIELD_INGREDIENTS = 'ingredients';
 
+    const MAX_INGREDIENTS = 5;
+
     /**
      * Если null то при сохранении не изменять связи ingredients
      * Если массив объектов Ingredient то сохранить только те что есть в массиве
@@ -48,6 +50,11 @@ class Dish extends ActiveRecord
         return [
             [['name'], 'required'],
             [['name'], 'string', 'max' => 100],
+            ['saveIngredients', function ($attribute, $params) {
+                if (is_array($this->$attribute) && count($this->$attribute) > self::MAX_INGREDIENTS) {
+                    $this->addError($attribute, Yii::t('app', 'Максимальное количество ингредиентов {count}', ['count' => self::MAX_INGREDIENTS]));
+                }
+            }],
         ];
     }
 

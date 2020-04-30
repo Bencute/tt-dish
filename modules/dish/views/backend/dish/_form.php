@@ -28,6 +28,7 @@ class ListIngredient {
     inputField = '';
     listBlock = '';
     count = 0;
+    maxCount = 5;
 
     constructor(inputField, listBlock) {
         this.inputField = inputField;
@@ -40,24 +41,11 @@ class ListIngredient {
     }
     
     add() {
-        if (this.listBlock.children.length < 5) {
+        if (this.listBlock.children.length < this.maxCount) {
             this.listBlock.insertAdjacentHTML('beforeend', this.inputField);
             let listIngredients = this.listBlock.querySelectorAll('.js-item-ingredient');
             let lastIngredient = listIngredients[listIngredients.length - 1];
             this.initDeleteLink(lastIngredient);
-            
-            // let delLink = document.createElement('a');
-            // delLink.href = '';
-            // delLink.innerHTML = 'Delete';
-            // var refObj = this;
-            // delLink.addEventListener('click', function (e) {
-            //     refObj.remove(lastIngredient);
-            //     e.preventDefault();
-            //     e.stopPropagation();
-            //     e.stopImmediatePropagation();
-            // });
-            //
-            // lastIngredient.append(delLink);
         }
     }
     
@@ -104,6 +92,8 @@ EOT_JS_CODE
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <div class="js-ingredients">
+        <?=Html::error($model, 'saveIngredients')?>
+
         <?php if (is_array($saveIngredients)) { ?>
             <?php foreach ($saveIngredients as $saveIngredient) { ?>
                 <?= $this->render('_formIngredient', [
