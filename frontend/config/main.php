@@ -11,6 +11,13 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'defaultRoute' => 'dish',
+    'modules' => [
+        'dish' => [
+            'class' => 'dish\DishModule',
+            'controllerNamespace' => 'dish\controllers\frontend',
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -44,12 +51,6 @@ return [
             ],
         ],
         */
-    ],
-    'modules' => [
-        'dish' => [
-            'class' => 'dish\Module',
-            'controllerNamespace' => 'dish\controllers\frontend',
-        ],
     ],
     'params' => $params,
 ];

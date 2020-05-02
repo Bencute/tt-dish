@@ -2,6 +2,9 @@
 
 namespace dish\controllers\frontend;
 
+use dish\DishModule;
+use dish\model\forms\FormFilterByIngredients;
+use Yii;
 use yii\web\Controller;
 
 /**
@@ -10,6 +13,9 @@ use yii\web\Controller;
 class DefaultController extends Controller
 {
 
+    /**
+     * {@inheritdoc}
+     */
     public function init()
     {
         parent::init();
@@ -23,6 +29,22 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $ingredients = DishModule::getIngredients();
+
+        $model = new FormFilterByIngredients();
+
+        $dataProvider = null;
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+//            var_dump($model);
+            // TODO filter logic
+            $dataProvider = DishModule::getDishDataProviderByIngredients($model->ingredients);
+        }
+
+        return $this->render('index', [
+            'ingredients' => $ingredients,
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }

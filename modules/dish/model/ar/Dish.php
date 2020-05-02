@@ -3,7 +3,6 @@
 namespace dish\model\ar;
 
 use Exception;
-use Yii;
 use yii\base\InvalidConfigException;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
@@ -20,7 +19,7 @@ use yii\db\ActiveRecord;
 class Dish extends ActiveRecord
 {
     /**
-     *
+     * Имя поля ингредиентов в HTML форме
      */
     const NAME_FORMFIELD_INGREDIENTS = 'ingredients';
 
@@ -50,11 +49,7 @@ class Dish extends ActiveRecord
         return [
             [['name'], 'required'],
             [['name'], 'string', 'max' => 100],
-            ['saveIngredients', function ($attribute, $params) {
-                if (is_array($this->$attribute) && count($this->$attribute) > self::MAX_INGREDIENTS) {
-                    $this->addError($attribute, Yii::t('app', 'Максимальное количество ингредиентов {count}', ['count' => self::MAX_INGREDIENTS]));
-                }
-            }],
+            ['saveIngredients', '\dish\validators\CountValidator', 'max' => self::MAX_INGREDIENTS],
         ];
     }
 
@@ -91,10 +86,7 @@ class Dish extends ActiveRecord
     }
 
     /**
-     * @param array $data
-     * @param null $formName
-     * @return bool
-     * @throws InvalidConfigException
+     * {@inheritdoc}
      */
     public function load($data, $formName = null)
     {
@@ -106,6 +98,9 @@ class Dish extends ActiveRecord
         return parent::load($data, $formName);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function save($runValidation = true, $attributeNames = null)
     {
         $transaction = $this->getDb()->beginTransaction();

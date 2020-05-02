@@ -2,6 +2,7 @@
 
 namespace dish\controllers\backend;
 
+use dish\DishModule;
 use Yii;
 use dish\model\ar\Dish;
 use dish\model\ar\DishSearchQuery;
@@ -93,7 +94,7 @@ class DishController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        $ingredients = $this->module->getIngredients();
+        $ingredients = DishModule::getIngredients();
 
         return $this->render('create', [
             'model' => $model,
@@ -119,7 +120,7 @@ class DishController extends Controller
 
         $saveIngredients = Yii::$app->request->getIsGet() ? $model->ingredients : $model->getSaveIngredients();
 
-        $ingredients = $this->module->getIngredients();
+        $ingredients = DishModule::getIngredients();
 
         return $this->render('update', [
             'model' => $model,

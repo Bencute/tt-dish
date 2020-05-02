@@ -13,7 +13,7 @@ return [
     'bootstrap' => ['log'],
     'modules' => [
         'dish' => [
-            'class' => 'dish\Module',
+            'class' => 'dish\DishModule',
             'controllerNamespace' => 'dish\controllers\backend',
         ],
     ],

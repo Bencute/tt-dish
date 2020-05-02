@@ -1,12 +1,21 @@
+<?php
+
+use yii\data\ActiveDataProvider;
+use dish\model\ar\Ingredient;
+use dish\model\forms\FormFilterByIngredients;
+
+/* @var $ingredients Ingredient[] */
+/* @var $model FormFilterByIngredients */
+/* @var $dataProvider ActiveDataProvider */
+
+?>
 <div class="dish-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
+    <h1>Dishes</h1>
+
+    <?= $this->render('formFilter', [
+            'ingredients' => $ingredients,
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+        ]
+    )?>
 </div>
