@@ -4,12 +4,16 @@
     ```
     git clone https://github.com/Bencute/tt-dish.git
     ```
-2. Настроить сервер на хосты для `backend` и `frontend`
-3. Сконфигурировать настройки окружения в `/environments` и инициализировать окружение командой консоли 
+2. Установить пакеты composer 
+    ```
+    composer install
+    ```
+3. Настроить сервер на хосты для `backend` и `frontend`
+4. Сконфигурировать настройки окружения в `/environments` и инициализировать окружение командой консоли 
     ```
     init
     ```
-4. Применить миграции:
+5. Применить миграции:
    - Базовые миграции 
      ```
      yii migrate
@@ -18,10 +22,10 @@
      ```
      yii migrate --migrationPath=/path to project/modules/dish/migrations
      ```
-5. Перейти в админ панель:
+6. Перейти в админ панель:
     - блюд: `http://backend/index.php?r=dish%2Fdish`
     - ингредиентов: `http://backend/index.php?r=dish%2ingredient`
-6. Перейти на фронт `http://frontend`
+7. Перейти на фронт `http://frontend`
 
 ## Структура директорий
 
