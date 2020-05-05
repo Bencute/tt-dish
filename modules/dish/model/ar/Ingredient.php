@@ -2,7 +2,6 @@
 
 namespace dish\model\ar;
 
-use Yii;
 use yii\base\InvalidConfigException;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;

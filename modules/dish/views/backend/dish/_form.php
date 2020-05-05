@@ -41,7 +41,7 @@ class ListIngredient {
     }
     
     add() {
-        if (this.listBlock.children.length < this.maxCount) {
+        if (this.listBlock.children.length <= this.maxCount) {
             this.listBlock.insertAdjacentHTML('beforeend', this.inputField);
             let listIngredients = this.listBlock.querySelectorAll('.js-item-ingredient');
             let lastIngredient = listIngredients[listIngredients.length - 1];

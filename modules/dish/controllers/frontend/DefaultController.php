@@ -35,9 +35,9 @@ class DefaultController extends Controller
 
         $dataProvider = null;
 
+        $dishes = [];
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-//            var_dump($model);
-            // TODO filter logic
             $dataProvider = DishModule::getDishDataProviderByIngredients($model->ingredients);
         }
 
@@ -45,6 +45,7 @@ class DefaultController extends Controller
             'ingredients' => $ingredients,
             'model' => $model,
             'dataProvider' => $dataProvider,
+            'dishes' => $dishes,
         ]);
     }
 }

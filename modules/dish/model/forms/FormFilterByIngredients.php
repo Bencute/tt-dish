@@ -1,8 +1,7 @@
 <?php
 
 namespace dish\model\forms;
-use Exception;
-use Yii;
+
 use yii\base\Model;
 
 class FormFilterByIngredients extends Model

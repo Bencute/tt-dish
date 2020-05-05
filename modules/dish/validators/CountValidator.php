@@ -41,6 +41,11 @@ class CountValidator extends Validator
     /**
      * {@inheritdoc}
      */
+    public $skipOnEmpty = false;
+
+    /**
+     * {@inheritdoc}
+     */
     public function init()
     {
         parent::init();

@@ -1,14 +1,11 @@
 <?php
 
-use yii\data\ActiveDataProvider;
-use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use dish\model\ar\Ingredient;
 use dish\model\forms\FormFilterByIngredients;
 
 /* @var $ingredients Ingredient[] */
 /* @var $model FormFilterByIngredients */
-/* @var $dataProvider ActiveDataProvider */
 
 ?>
 
@@ -25,12 +22,6 @@ use dish\model\forms\FormFilterByIngredients;
         </label>
     <?php } ?>
 
-    <input class="btn btn-success" type="submit" value="filter">
+    <input class="btn btn-success" type="submit" name="<?=$model->formName() . '[submit]'?>" value="filter">
 
 <?php ActiveForm::end(); ?>
-
-<?php if (!is_null($dataProvider)) {
-    echo GridView::widget([
-        'dataProvider' => $dataProvider,
-    ]);
-} ?>
